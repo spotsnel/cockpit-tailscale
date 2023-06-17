@@ -1,0 +1,33 @@
+image:
+  file: /.gitpod/Dockerfile
+
+tasks:
+  - name: dotfiles
+    command: |
+      if [ ! -d "~/.dotfiles" ]; then
+        cd /tmp
+        curl -sSL https://raw.githubusercontent.com/gbraad/dotfiles/master/install.sh -o /tmp/install.sh &&
+        rm -f ~/.zshrc &&
+        sh /tmp/install.sh
+      fi
+      mv ~/.bashrc-nochsh ~/.bashrc
+  - name: sshd
+    command: |
+      sudo ssh-keygen -A && sudo /usr/sbin/sshd
+      curl https://github.com/gbraad.keys | tee -a ~/.ssh/authorized_keys
+  - name: tailscale
+    command: |
+      sudo --preserve-env=TAILSCALE_AUTHKEY /etc/init.d/tailscaled start
+
+ports:
+  - port: 22
+    onOpen: ignore
+  - port: 6080
+    onOpen: open-preview
+  - port: 9090
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - ms-vscode.Theme-TomorrowKit
+    - tailscale.vscode-tailscale
