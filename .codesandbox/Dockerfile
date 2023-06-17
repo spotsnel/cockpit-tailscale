@@ -5,9 +5,10 @@ USER root
 RUN dnf install -y \
         docker cockpit \
         make npm \
-    && dnf update -y tailscale \
     && dnf clean all \
     && rm -rf /var/cache/yum
+
+RUN npm install -g yarn
 
 USER gbraad
 
