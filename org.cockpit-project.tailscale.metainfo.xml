@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.cockpit_project.tailscale</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Tailscale</name>
+  <summary>Tailscale application</summary>
+  <description>
+    <p>
+      Tailscale application for Cockpit
+    </p>
+  </description>
+  <extends>org.cockpit_project.tailscale</extends>
+  <launchable type="cockpit-manifest">tailscale</launchable>
+  <url type="homepage">https://github.com/spotsnel/tailscale-cockpit</url>
+  <url type="bugtracker">https://github.com/spotsnel/tailscale-cockpit/issues</url>
+  <update_contact>me@gbraad.nl</update_contact>
+</component>

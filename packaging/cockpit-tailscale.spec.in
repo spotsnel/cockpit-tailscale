@@ -1,11 +1,11 @@
-Name: cockpit-starter-kit
+Name: cockpit-tailscale
 Version: %{VERSION}
 Release: 1%{?dist}
-Summary: Cockpit Starter Kit Example Module
+Summary: Cockpit tailscale
 License: LGPLv2+
 
-Source0: https://github.com/cockpit-project/starter-kit/releases/download/%{version}/%{name}-%{version}.tar.xz
-Source1: https://github.com/cockpit-project/starter-kit/releases/download/%{version}/%{name}-node-%{version}.tar.xz
+Source0: https://github.com/spotsnel/tailscale-cockpit/releases/download/%{version}/%{name}-%{version}.tar.xz
+Source1: https://github.com/spotsnel/tailscale-cockpit/releases/download/%{version}/%{name}-node-%{version}.tar.xz
 BuildArch: noarch
 ExclusiveArch: %{nodejs_arches} noarch
 BuildRequires: nodejs

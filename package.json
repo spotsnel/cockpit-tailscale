@@ -1,9 +1,9 @@
 {
-  "name": "starter-kit",
-  "description": "Scaffolding for a cockpit module",
+  "name": "tailscale",
+  "description": "Tailscale application for Cockpit",
   "type": "module",
   "main": "index.js",
-  "repository": "git@github.com:cockpit/starter-kit.git",
+  "repository": "git@github.com:spotsnel/tailscale-cockpit.git",
   "author": "",
   "license": "LGPL-2.1",
   "scripts": {
