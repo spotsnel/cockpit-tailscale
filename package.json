@@ -28,10 +28,10 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "@patternfly/patternfly": "5.0.0-alpha.64",
-    "@patternfly/react-core": "5.0.0-alpha.115",
-    "@patternfly/react-icons": "5.0.0-alpha.19",
-    "@patternfly/react-styles": "5.0.0-alpha.16",
+    "@patternfly/patternfly": "5.0.0-prerelease.8",
+    "@patternfly/react-core": "5.0.0-alpha.132",
+    "@patternfly/react-icons": "5.0.0-alpha.21",
+    "@patternfly/react-styles": "5.0.0-alpha.19",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "yarn": "^1.22.19"
