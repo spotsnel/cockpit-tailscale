@@ -33,11 +33,6 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
     }
 
     render() {
-
-
-        const columns: TableProps['cols'] = ['', 'IP', 'Hostname'];
-  
-
         
         return (
             <>
@@ -47,6 +42,15 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                                 aria-label="Tailscale peers"
                                 variant='compact' borders={false}>
                             <Caption>Tailscale peers</Caption>
+                            <Thead noWrap>
+                                <Tr>
+                                    <Th></Th>
+                                    <Th>IP</Th>
+                                    <Th>Hostname</Th>
+                                    <Th>Network</Th>
+                                    <Th>Exit node</Th>
+                                </Tr>
+                            </Thead>
                             <Tbody>
                                 <Peer {...this.state.Status.Self} />
                                 {
@@ -67,15 +71,27 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 
 class Peer extends React.Component<TailscalePeer> {
     render() {
+
+        const name = this.props.DNSName.split('.');
+        const hostName = name[0];
+        const network = name[1] + '.' + 'ts.net';
+
         return (
             <Tr>
                 <Td>
-                    {this.props.Online
+                    { this.props.Online
                         ? <Icon status="success"><CheckCircleIcon /></Icon>
                         : <Icon status="danger"><ExclamationCircleIcon /></Icon>
                     }</Td>
-                <Td>{this.props.TailscaleIPs[0]}</Td>
-                <Td>{this.props.HostName}</Td>
+                <Td>{ this.props.TailscaleIPs[0] }</Td>
+                <Td>{ hostName }</Td>
+                <Td>{ network }</Td>
+                <Td>{ this.props.ExitNode
+                        ? "Current"
+                        : this.props.ExitNodeOption
+                            ? "Yes"
+                            : ""
+                }</Td>
             </Tr>);
     }
 }
