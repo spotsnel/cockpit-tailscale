@@ -39,6 +39,7 @@ export type TailscalePeer = {
     ExitNode: boolean;
     ExitNodeOption: boolean;
     Active: boolean;
+    CurAddr: string;
 }
 
 export interface TailscaleExitNodeStatus {

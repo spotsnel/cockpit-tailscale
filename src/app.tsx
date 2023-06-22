@@ -4,6 +4,7 @@ import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp } fr
 import { Icon } from '@patternfly/react-core';
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon';
 import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
+import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
 import {
     ExpandableRowContent,
     Table, Caption, Thead, Tbody, Tr, Th, Td,
@@ -48,7 +49,10 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                                     <Th>IP</Th>
                                     <Th>Hostname</Th>
                                     <Th>Network</Th>
+                                    <Th>State</Th>
                                     <Th>Exit node</Th>
+                                    <Th>OS</Th>
+                                    <Th>Traffic</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
@@ -86,12 +90,22 @@ class Peer extends React.Component<TailscalePeer> {
                 <Td>{ this.props.TailscaleIPs[0] }</Td>
                 <Td>{ hostName }</Td>
                 <Td>{ network }</Td>
+                <Td>{ this.props.Active 
+                    ? this.props.CurAddr != "" 
+                        ? "Direct"
+                        : "Relay: " + this.props.Relay
+                    : this.props.Online
+                        ? "Idle"
+                        : "-"
+                }</Td>
                 <Td>{ this.props.ExitNode
                         ? "Current"
                         : this.props.ExitNodeOption
                             ? "Yes"
-                            : ""
+                            : "-"
                 }</Td>
+                <Td>{ this.props.OS }</Td>
+                <Td>{ this.props.TxBytes } / { this.props.RxBytes }</Td>
             </Tr>);
     }
 }
