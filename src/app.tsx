@@ -49,6 +49,7 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                                     <Th>IP</Th>
                                     <Th>Hostname</Th>
                                     <Th>Network</Th>
+                                    <Th>Tags</Th>
                                     <Th>State</Th>
                                     <Th>Exit node</Th>
                                     <Th>OS</Th>
@@ -80,6 +81,12 @@ class Peer extends React.Component<TailscalePeer> {
         const hostName = name[0];
         const network = name[1] + '.' + 'ts.net';
 
+        var tags = "-"
+        if(this.props.Tags) {
+            const mapped_items = this.props.Tags?.map(t => { return t})
+            tags = mapped_items.join(', ')
+        }
+
         return (
             <Tr>
                 <Td>
@@ -90,6 +97,10 @@ class Peer extends React.Component<TailscalePeer> {
                 <Td>{ this.props.TailscaleIPs[0] }</Td>
                 <Td>{ hostName }</Td>
                 <Td>{ network }</Td>
+                <Td>{
+                        tags
+                    }
+                </Td>
                 <Td>{ this.props.Active 
                     ? this.props.CurAddr != "" 
                         ? "Direct"
