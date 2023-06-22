@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactComponentElement, ReactNode } from 'react';
 
-import { TailscaleBackendState, TailscaleStatus, TailscaleUp } from './types';
+import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp } from './types';
 import { Card, CardTitle, CardBody } from '@patternfly/react-core';
 
 type ApplicationProps = { 
@@ -26,19 +26,39 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
     }
 
     render() {
+
         return (
 		<Card>
             <CardTitle>Tailscale</CardTitle>
             <CardBody>
-                <pre>
                 {
                     this.state.Status != null
-                        ? this.state.Status.Self.HostName + " " + this.state.Status.Self.TailscaleIPs[0]
+                        ? <>
+                            <Peer { ...this.state.Status.Self } />
+                            <hr />
+                            {
+                                Object.entries(this.state.Status.Peer).map(peer =>
+                                    {
+                                        return <Peer {...peer[1]} />
+                                    }
+                                )    
+                            }
+                          </>
                         : <p>Loading...</p>
                 }
-                </pre>
             </CardBody>
 		</Card>
         );
+    }
+}
+
+
+class Peer extends React.Component<TailscalePeer> {
+    render() {
+         return (<div>
+                <p>
+                    <pre>{ this.props.TailscaleIPs[0] } { ' '.repeat(15 - this.props.TailscaleIPs[0].length) } { this.props.HostName }</pre>
+                </p>
+            </div>);
     }
 }
