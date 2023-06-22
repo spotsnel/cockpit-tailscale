@@ -40,6 +40,7 @@ export type TailscalePeer = {
     ExitNodeOption: boolean;
     Active: boolean;
     CurAddr: string;
+    ShareeNode?: boolean;   // funnel-ingress-node, device-of-shared-to-user
 }
 
 export interface TailscaleExitNodeStatus {

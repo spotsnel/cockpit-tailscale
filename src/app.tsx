@@ -34,16 +34,20 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
     }
 
     render() {
-        
+
+        function isNotSharee(peer:TailscalePeer): peer is TailscalePeer {
+            return peer.DNSName !== "";     // ShareeNode doesn't work?
+        }
+
         return (
             <>
                 {
                     this.state.Status != null
                         ? <Table
-                                aria-label="Tailscale peers"
-                                variant='compact' borders={false}>
+                            aria-label="Tailscale peers"
+                            variant='compact' borders={false}>
                             <Caption>Tailscale peers</Caption>
-                            <Thead noWrap>
+                            <Thead>
                                 <Tr>
                                     <Th></Th>
                                     <Th>IP</Th>
@@ -59,9 +63,11 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                             <Tbody>
                                 <Peer {...this.state.Status.Self} />
                                 {
-                                    Object.entries(this.state.Status.Peer).map(peer => {
-                                        return <Peer {...peer[1]} />
-                                    }
+                                    Object.values(this.state.Status.Peer)
+                                        .filter(isNotSharee)
+                                        .map(peer => {
+                                            return <Peer {...peer} />
+                                        }
                                     )
                                 }
                             </Tbody>
@@ -82,41 +88,41 @@ class Peer extends React.Component<TailscalePeer> {
         const network = name[1] + '.' + 'ts.net';
 
         var tags = "-"
-        if(this.props.Tags) {
-            const mapped_items = this.props.Tags?.map(t => { return t})
+        if (this.props.Tags) {
+            const mapped_items = this.props.Tags?.map(t => { return t })
             tags = mapped_items.join(', ')
         }
 
         return (
             <Tr>
                 <Td>
-                    { this.props.Online
+                    {this.props.Online
                         ? <Icon status="success"><CheckCircleIcon /></Icon>
                         : <Icon status="danger"><ExclamationCircleIcon /></Icon>
                     }</Td>
-                <Td>{ this.props.TailscaleIPs[0] }</Td>
-                <Td>{ hostName }</Td>
-                <Td>{ network }</Td>
+                <Td>{this.props.TailscaleIPs[0]}</Td>
+                <Td>{hostName}</Td>
+                <Td>{network}</Td>
                 <Td>{
-                        tags
-                    }
+                    tags
+                }
                 </Td>
-                <Td>{ this.props.Active 
-                    ? this.props.CurAddr != "" 
+                <Td>{this.props.Active
+                    ? this.props.CurAddr != ""
                         ? "Direct"
                         : "Relay: " + this.props.Relay
                     : this.props.Online
                         ? "Idle"
                         : "-"
                 }</Td>
-                <Td>{ this.props.ExitNode
-                        ? "Current"
-                        : this.props.ExitNodeOption
-                            ? "Yes"
-                            : "-"
+                <Td>{this.props.ExitNode
+                    ? "Current"
+                    : this.props.ExitNodeOption
+                        ? "Yes"
+                        : "-"
                 }</Td>
-                <Td>{ this.props.OS }</Td>
-                <Td>{ this.props.TxBytes } / { this.props.RxBytes }</Td>
+                <Td>{this.props.OS}</Td>
+                <Td>{this.props.TxBytes} / {this.props.RxBytes}</Td>
             </Tr>);
     }
 }
