@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { TailscaleBackendState, TailscaleStatusResponse, TailscaleUpResponse } from './types';
+import { TailscaleBackendState, TailscaleStatus, TailscaleUp } from './types';
 import { Card, CardTitle, CardBody } from '@patternfly/react-core';
 
 type ApplicationProps = { 
 }
 
 type ApplicationState = { 
-    Status: TailscaleStatusResponse
+    Status: TailscaleStatus
 }
-
 
 
 export class Application extends React.Component<ApplicationProps, ApplicationState> {
@@ -21,7 +20,7 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 	super(props);
 
         cockpit.spawn(['tailscale', 'status', '--json']).done(content => {
-            const status: TailscaleStatusResponse = JSON.parse(content)
+            const status: TailscaleStatus = JSON.parse(content)
 		    this.setState(state => ({Status: status}));        
         });
     }
@@ -34,7 +33,7 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                 <pre>
                 {
                     this.state.Status != null
-                        ? this.state.Status.Self.TailscaleIPs[0]
+                        ? this.state.Status.Self.HostName + " " + this.state.Status.Self.TailscaleIPs[0]
                         : <p>Loading...</p>
                 }
                 </pre>

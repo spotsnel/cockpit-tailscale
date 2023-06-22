@@ -9,25 +9,47 @@ export type TailscaleBackendState =
   | 'Starting'
   | 'Running';
 
-export type TailscaleStatusResponse = {
-  BackendState: TailscaleBackendState;
-  AuthURL: string;
-  Self: {
+export enum OS {
+    Android = "android",
+    IOS = "iOS",
+    Linux = "linux",
+    MACOS = "macOS",
+    Windows = "windows",
+}
+
+export type TailscalePeer = {
     ID: string;
-    UserID: number;
+    PublicKey: string;
     HostName: string;
     DNSName: string;
-    OS: string;
+    OS: OS;
+    UserID: string;
+    TailscaleIPs: string[]
+    Tags?: string[];
+    Online: boolean;
+    Capabilities?: string[];
+}
+
+export interface TailscaleExitNodeStatus {
+    ID:           string;
+    Online:       boolean;
     TailscaleIPs: string[];
-    Capabilities: string[];
-    Online: boolean
-  };
+}
+
+export type TailscaleStatus = {
+  BackendState: TailscaleBackendState;
+  AuthURL: string;
+  Self: TailscalePeer,
   User: Record<string, TailscaleUser> | null;
   CurrentTailnet: {
     Name: string;
     MagicDNSSuffix: string;
     MagicDNSEnabled: boolean;
   } | null;
+  ExitNodeStatus: TailscaleExitNodeStatus | null;
+  Peer: {
+    [key: string]: TailscalePeer
+  };
 };
 
 export type TailscaleUser = {
@@ -38,8 +60,8 @@ export type TailscaleUser = {
   Roles: string[];
 };
 
-export type TailscaleUpResponse = {
+export type TailscaleUp = {
   BackendState: TailscaleBackendState;
-  AuthURL?: string; // e.g. https://login.tailscale.com/a/0123456789abcdef
-  QR?: string; // a DataURL-encoded QR code PNG of the AuthURL
+  AuthURL?: string;
+  QR?: string;
 };
