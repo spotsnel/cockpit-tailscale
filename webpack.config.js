@@ -13,7 +13,7 @@ module.exports = {
         use: [
           {
             loader: 'ts-loader',
-	    options: {
+      	    options: {
               transpileOnly: true,
               experimentalWatchApi: true,
             },
@@ -95,6 +95,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    modules: ["node_modules", 'pkg/lib'],
+    alias: { 'font-awesome': 'font-awesome-sass/assets/stylesheets' },
+  },
+  resolveLoader: {
+    modules: ["node_modules", 'pkg/lib'],
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -1,4 +1,4 @@
-//import "cockpit-dark-theme";
+import "cockpit-dark-theme";
 //import "patternfly/patternfly-5-cockpit.scss";
 
 import '@patternfly/react-core/dist/styles/base.css';
