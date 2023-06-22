@@ -4,7 +4,11 @@ import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp } fr
 import { Icon } from '@patternfly/react-core';
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon';
 import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
-
+import {
+    ExpandableRowContent,
+    Table, Caption, Thead, Tbody, Tr, Th, Td,
+    SortByDirection,
+} from '@patternfly/react-table';
 
 type ApplicationProps = {
 }
@@ -30,26 +34,29 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 
     render() {
 
+
+        const columns: TableProps['cols'] = ['', 'IP', 'Hostname'];
+  
+
+        
         return (
             <>
                 {
                     this.state.Status != null
-                        ? <table>
-                            <tr>
-                                <th>Online</th>
-                                <th>IP</th>
-                                <th>Host name</th>
-                            </tr>
-
-                            <Peer {...this.state.Status.Self} />
-                            {
-                                Object.entries(this.state.Status.Peer).map(peer => {
-                                    return <Peer {...peer[1]} />
+                        ? <Table
+                                aria-label="Tailscale peers"
+                                variant='compact' borders={false}>
+                            <Caption>Tailscale peers</Caption>
+                            <Tbody>
+                                <Peer {...this.state.Status.Self} />
+                                {
+                                    Object.entries(this.state.Status.Peer).map(peer => {
+                                        return <Peer {...peer[1]} />
+                                    }
+                                    )
                                 }
-                                )
-                            }
-
-                        </table>
+                            </Tbody>
+                        </Table>
                         : <p>Loading...</p>
                 }
             </>
@@ -61,14 +68,14 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 class Peer extends React.Component<TailscalePeer> {
     render() {
         return (
-            <tr>
-                <td>
+            <Tr>
+                <Td>
                     {this.props.Online
                         ? <Icon status="success"><CheckCircleIcon /></Icon>
                         : <Icon status="danger"><ExclamationCircleIcon /></Icon>
-                    }</td>
-                <td>{this.props.TailscaleIPs[0]}</td>
-                <td>{this.props.HostName}</td>
-            </tr>);
+                    }</Td>
+                <Td>{this.props.TailscaleIPs[0]}</Td>
+                <Td>{this.props.HostName}</Td>
+            </Tr>);
     }
 }

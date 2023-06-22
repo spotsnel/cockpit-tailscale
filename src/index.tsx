@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Application } from './app';
 
-import "patternfly/patternfly-5-overrides.scss";
+//import "patternfly/patternfly-5-overrides.scss";
 
 document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
