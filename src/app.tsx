@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-//import { Alert } from "@patternfly/react-core/dist/esm/components/Alert/index.js";
-//import { Card, CardBody, CardTitle } from "@patternfly/react-core/dist/esm/components/Card/index.js";
+import { Card, CardTitle, CardBody } from '@patternfly/react-core';
 
 type ApplicationProps = { 
 }
@@ -24,9 +22,12 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 
     render() {
         return (
-		<pre>
-		{ this.state.response }
-		</pre>
+		<Card>
+            <CardTitle>Tailscale</CardTitle>
+            <CardBody>
+		        { this.state.response }
+            </CardBody>
+		</Card>
         );
     }
 }
