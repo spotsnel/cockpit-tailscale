@@ -25,7 +25,9 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 		<Card>
             <CardTitle>Tailscale</CardTitle>
             <CardBody>
+                <pre>
 		        { this.state.response }
+                </pre>
             </CardBody>
 		</Card>
         );
