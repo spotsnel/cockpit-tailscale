@@ -52,37 +52,49 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@patternfly/patternfly@5.0.0-alpha.64":
-  version "5.0.0-alpha.64"
-  resolved "https://registry.npmjs.org/@patternfly/patternfly/-/patternfly-5.0.0-alpha.64.tgz"
-  integrity sha512-VJOCpS/WyhjkKqoaCo3usQxoXAj90p81NDHDE3/4/xTUYb53xNNXDJ1YwkPkG0RDvs6DaS9U/hEmu1AbCa9VEw==
+"@patternfly/patternfly@5.0.0-prerelease.10":
+  version "5.0.0-prerelease.10"
+  resolved "https://registry.npmjs.org/@patternfly/patternfly/-/patternfly-5.0.0-prerelease.10.tgz"
+  integrity sha512-jVAqCl2UHiB4246fzLBNTcrY6iwllZ5V14KV4kN4/PIPGb3lgM7jpFxWSISsT6yApsVQ8mQngiWhwfqpDZpVaw==
 
-"@patternfly/react-core@5.0.0-alpha.115":
-  version "5.0.0-alpha.115"
-  resolved "https://registry.npmjs.org/@patternfly/react-core/-/react-core-5.0.0-alpha.115.tgz"
-  integrity sha512-hkpu7KbUeMGukuF34QxOuTHUd5EnVuhH5VZ0S9IaOrgRiXnK/xZsf5YQPj/2TL4lx8QOPiOOzDzvxLgpNSYaBQ==
+"@patternfly/react-core@^5.0.0-prerelease.13", "@patternfly/react-core@5.0.0-prerelease.13":
+  version "5.0.0-prerelease.13"
+  resolved "https://registry.npmjs.org/@patternfly/react-core/-/react-core-5.0.0-prerelease.13.tgz"
+  integrity sha512-NhZmaagCjEDhfOI0VPG5oeYeQkzUAUZB/gDg8VSDvs+2jnwrqRH/Wk+Sot9ix9GaU7Xad3jdkEY9HAqKomVsnw==
   dependencies:
-    "@patternfly/react-icons" "^5.0.0-alpha.19"
-    "@patternfly/react-styles" "^5.0.0-alpha.16"
-    "@patternfly/react-tokens" "^5.0.0-alpha.14"
-    focus-trap "7.4.2"
+    "@patternfly/react-icons" "^5.0.0-prerelease.7"
+    "@patternfly/react-styles" "^5.0.0-prerelease.5"
+    "@patternfly/react-tokens" "^5.0.0-prerelease.5"
+    focus-trap "7.4.3"
     react-dropzone "^14.2.3"
     tslib "^2.5.0"
 
-"@patternfly/react-icons@^5.0.0-alpha.19", "@patternfly/react-icons@5.0.0-alpha.19":
-  version "5.0.0-alpha.19"
-  resolved "https://registry.npmjs.org/@patternfly/react-icons/-/react-icons-5.0.0-alpha.19.tgz"
-  integrity sha512-jyVSK6f9ueIO+pI2K2njI/4qdQR9WK953IUJtQ6PtNhLHKsAHOnqwHjBUrqxWOBZ+ty5MpqHPoB9Yd34i8vcxg==
+"@patternfly/react-icons@^5.0.0-prerelease.7", "@patternfly/react-icons@5.0.0-prerelease.7":
+  version "5.0.0-prerelease.7"
+  resolved "https://registry.npmjs.org/@patternfly/react-icons/-/react-icons-5.0.0-prerelease.7.tgz"
+  integrity sha512-nR4kv5pKN9csN6uZ/0HZg55ZM9S2ngpCL8s/pAc1PtwdOpvm5fUEb3HnCKJmf2pjRxPr7FKIF3aAAAGRd1ORIA==
 
-"@patternfly/react-styles@^5.0.0-alpha.16", "@patternfly/react-styles@5.0.0-alpha.16":
-  version "5.0.0-alpha.16"
-  resolved "https://registry.npmjs.org/@patternfly/react-styles/-/react-styles-5.0.0-alpha.16.tgz"
-  integrity sha512-RxU8sSKY0tM40xZwk+BR5vWotP+LZOH2vqdNFEIT7a1+1Kr9qSm5ktq34gnzK0nyWUaH08qL9da4HVo3/O+R4A==
+"@patternfly/react-styles@^5.0.0-prerelease.5", "@patternfly/react-styles@5.0.0-prerelease.5":
+  version "5.0.0-prerelease.5"
+  resolved "https://registry.npmjs.org/@patternfly/react-styles/-/react-styles-5.0.0-prerelease.5.tgz"
+  integrity sha512-1hMBVpW/LXuDOyfGhI7hhaBnUJn18wh2+Zbfj3Xh4J3jhI1iVr9XIudu/rjwheCKLcELid41IYWF43Pg6FmNSQ==
 
-"@patternfly/react-tokens@^5.0.0-alpha.14":
-  version "5.0.0-prerelease.4"
-  resolved "https://registry.npmjs.org/@patternfly/react-tokens/-/react-tokens-5.0.0-prerelease.4.tgz"
-  integrity sha512-bg+ABSLRflyLltv9+fx3w/cyF9i/eWy1/m1SNgeBMtJtfOgl+RLKejChYQ/PPYHoFaxllbPBamgWbi6YppD4Ew==
+"@patternfly/react-table@5.0.0-prerelease.13":
+  version "5.0.0-prerelease.13"
+  resolved "https://registry.npmjs.org/@patternfly/react-table/-/react-table-5.0.0-prerelease.13.tgz"
+  integrity sha512-523SidmitAkXHugkE8NAfcv9+uRUASAYhvNxbZ2wnB8EuO1ICD6GmPHVrbtZJl/43A7cvBJuWQ/EIVTa8bkRxQ==
+  dependencies:
+    "@patternfly/react-core" "^5.0.0-prerelease.13"
+    "@patternfly/react-icons" "^5.0.0-prerelease.7"
+    "@patternfly/react-styles" "^5.0.0-prerelease.5"
+    "@patternfly/react-tokens" "^5.0.0-prerelease.5"
+    lodash "^4.17.19"
+    tslib "^2.5.0"
+
+"@patternfly/react-tokens@^5.0.0-prerelease.5":
+  version "5.0.0-prerelease.5"
+  resolved "https://registry.npmjs.org/@patternfly/react-tokens/-/react-tokens-5.0.0-prerelease.5.tgz"
+  integrity sha512-36iQ7CuYh3OKf+TEZNSfU5Mpgi+aLJoFFA2V4YDaOL8+7RC8sFqh/dW3S9ThkjQrtc0fF7OK7mrPJzK+nQB9UQ==
 
 "@types/body-parser@*":
   version "1.19.2"
@@ -1159,10 +1171,10 @@ find-up@^4.0.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-focus-trap@7.4.2:
-  version "7.4.2"
-  resolved "https://registry.npmjs.org/focus-trap/-/focus-trap-7.4.2.tgz"
-  integrity sha512-KMjf+H5uDWPkwSQVqE5r/+vOkP5zBWwVBoWPIZxU3gfg+M8IT+Y8s+vXQqZvHEIXyHPKHrSm6m4G4ceF98OZ8w==
+focus-trap@7.4.3:
+  version "7.4.3"
+  resolved "https://registry.npmjs.org/focus-trap/-/focus-trap-7.4.3.tgz"
+  integrity sha512-BgSSbK4GPnS2VbtZ50VtOv1Sti6DIkj3+LkVjiWMNjLeAp1SH1UlLx3ULu/DCu4vq5R4/uvTm+zrvsMsuYmGLg==
   dependencies:
     tabbable "^6.1.2"
 
@@ -1628,7 +1640,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash@^4.17.20, lodash@^4.17.21:
+lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -2473,14 +2485,6 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-string-replace-loader@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/string-replace-loader/-/string-replace-loader-3.1.0.tgz"
-  integrity sha512-5AOMUZeX5HE/ylKDnEa/KKBqvlnFmRZudSOjVJHxhoJg9QYTwl1rECx7SLR8BBH7tfxb4Rp7EM2XVfQFxIhsbQ==
-  dependencies:
-    loader-utils "^2.0.0"
-    schema-utils "^3.0.0"
-
 strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
@@ -2743,7 +2747,7 @@ webpack-sources@^3.2.3:
   resolved "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-"webpack@^4.0.0 || ^5.0.0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.0.0", webpack@^5, webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.88.0, webpack@5.x.x:
+"webpack@^4.0.0 || ^5.0.0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.88.0, webpack@5.x.x:
   version "5.88.0"
   resolved "https://registry.npmjs.org/webpack/-/webpack-5.88.0.tgz"
   integrity sha512-O3jDhG5e44qIBSi/P6KpcCcH7HD+nYIHVBhdWFxcLOcIGN8zGo5nqF3BjyNCxIh4p1vFdNnreZv2h2KkoAw3lw==

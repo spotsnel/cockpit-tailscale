@@ -1,12 +1,15 @@
-import React, { ReactComponentElement, ReactNode } from 'react';
+import React from 'react';
 
 import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp } from './types';
-import { Card, CardTitle, CardBody } from '@patternfly/react-core';
+import { Icon } from '@patternfly/react-core';
+import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon';
+import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
 
-type ApplicationProps = { 
+
+type ApplicationProps = {
 }
 
-type ApplicationState = { 
+type ApplicationState = {
     Status: TailscaleStatus
 }
 
@@ -17,37 +20,39 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
     }
 
     constructor(props: ApplicationProps) {
-	super(props);
+        super(props);
 
         cockpit.spawn(['tailscale', 'status', '--json']).done(content => {
             const status: TailscaleStatus = JSON.parse(content)
-		    this.setState(state => ({Status: status}));        
+            this.setState(state => ({ Status: status }));
         });
     }
 
     render() {
 
         return (
-		<Card>
-            <CardTitle>Tailscale</CardTitle>
-            <CardBody>
+            <>
                 {
                     this.state.Status != null
-                        ? <>
-                            <Peer { ...this.state.Status.Self } />
-                            <hr />
+                        ? <table>
+                            <tr>
+                                <th>Online</th>
+                                <th>IP</th>
+                                <th>Host name</th>
+                            </tr>
+
+                            <Peer {...this.state.Status.Self} />
                             {
-                                Object.entries(this.state.Status.Peer).map(peer =>
-                                    {
-                                        return <Peer {...peer[1]} />
-                                    }
-                                )    
+                                Object.entries(this.state.Status.Peer).map(peer => {
+                                    return <Peer {...peer[1]} />
+                                }
+                                )
                             }
-                          </>
+
+                        </table>
                         : <p>Loading...</p>
                 }
-            </CardBody>
-		</Card>
+            </>
         );
     }
 }
@@ -55,10 +60,15 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 
 class Peer extends React.Component<TailscalePeer> {
     render() {
-         return (<div>
-                <p>
-                    <pre>{ this.props.TailscaleIPs[0] } { ' '.repeat(15 - this.props.TailscaleIPs[0].length) } { this.props.HostName }</pre>
-                </p>
-            </div>);
+        return (
+            <tr>
+                <td>
+                    {this.props.Online
+                        ? <Icon status="success"><CheckCircleIcon /></Icon>
+                        : <Icon status="danger"><ExclamationCircleIcon /></Icon>
+                    }</td>
+                <td>{this.props.TailscaleIPs[0]}</td>
+                <td>{this.props.HostName}</td>
+            </tr>);
     }
 }
