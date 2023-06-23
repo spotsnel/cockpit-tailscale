@@ -9,6 +9,15 @@ export type TailscaleBackendState =
     | 'Starting'
     | 'Running';
 
+export type TailscaleVersion = {
+    majorMinorPatch: string;
+	short: string;
+	long: string;
+	gitCommit: string;
+	extraGitCommit: string;
+	cap: number;
+}
+
 export enum OS {
     Android = "android",
     IOS = "iOS",

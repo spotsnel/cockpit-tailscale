@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp } from './types';
+import { TailscaleBackendState, TailscalePeer, TailscaleStatus, TailscaleUp, TailscaleVersion } from './types';
 import { Icon } from '@patternfly/react-core';
 import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon';
 import CheckCircleIcon from '@patternfly/react-icons/dist/esm/icons/check-circle-icon';
@@ -16,21 +16,31 @@ type ApplicationProps = {
 
 type ApplicationState = {
     Status: TailscaleStatus
+    Version: TailscaleVersion
 }
-
 
 export class Application extends React.Component<ApplicationProps, ApplicationState> {
     state: ApplicationState = {
-        Status: null
+        Status: null,
+        Version: null
     }
 
     constructor(props: ApplicationProps) {
         super(props);
 
-        cockpit.spawn(['tailscale', 'status', '--json']).done(content => {
-            const status: TailscaleStatus = JSON.parse(content)
-            this.setState(state => ({ Status: status }));
-        });
+        cockpit
+            .spawn(['tailscale', 'version', '--json'])
+            .done(content => {
+                const version: TailscaleVersion = JSON.parse(content)
+                this.setState(state => ({ Version: version }));
+            });
+
+        cockpit
+            .spawn(['tailscale', 'status', '--json'])
+            .done(content => {
+                const status: TailscaleStatus = JSON.parse(content)
+                this.setState(state => ({ Status: status }));
+            });
     }
 
     render() {
@@ -43,36 +53,41 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
             <>
                 {
                     this.state.Status != null
-                        ? <Table
-                            aria-label="Tailscale peers"
-                            variant='compact' borders={false}>
-                            <Caption>Tailscale peers</Caption>
-                            <Thead>
-                                <Tr>
-                                    <Th></Th>
-                                    <Th>IP</Th>
-                                    <Th>Hostname</Th>
-                                    <Th>Network</Th>
-                                    <Th>Tags</Th>
-                                    <Th>State</Th>
-                                    <Th>Exit node</Th>
-                                    <Th>OS</Th>
-                                    <Th>Traffic</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                { this.state.Status.Self.Self = true }
-                                <Peer {...this.state.Status.Self} />
-                                {
-                                    Object.values(this.state.Status.Peer)
-                                        .filter(isNotSharee)
-                                        .map(peer => {
-                                            return <Peer {...peer} />
-                                        }
-                                    )
-                                }
-                            </Tbody>
-                        </Table>
+                        ? <div>
+                            <Table
+                                aria-label="Tailscale peers"
+                                variant='compact' borders={false}>
+                                <Caption>Tailscale peers</Caption>
+                                <Thead>
+                                    <Tr>
+                                        <Th></Th>
+                                        <Th>IP</Th>
+                                        <Th>Hostname</Th>
+                                        <Th>Network</Th>
+                                        <Th>Tags</Th>
+                                        <Th>State</Th>
+                                        <Th>Exit node</Th>
+                                        <Th>OS</Th>
+                                        <Th>Traffic</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
+                                    {this.state.Status.Self.Self = true}
+                                    <Peer {...this.state.Status.Self} />
+                                    {
+                                        Object.values(this.state.Status.Peer)
+                                            .filter(isNotSharee)
+                                            .map(peer => {
+                                                return <Peer {...peer} />
+                                            }
+                                            )
+                                    }
+                                </Tbody>
+                            </Table>
+
+                            <div>Tailscale {this.state.Version.majorMinorPatch}</div>
+                        </div>
+
                         : <p>Loading...</p>
                 }
             </>
