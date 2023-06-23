@@ -3,8 +3,11 @@ FROM --platform=linux/amd64 ghcr.io/gbraad-devenv/fedora/base:38
 USER root
 
 RUN dnf install -y \
-        docker cockpit \
-        make npm \
+        docker \
+        cockpit \
+        make \
+        npm \
+        rpm-build \
     && dnf clean all \
     && rm -rf /var/cache/yum
 

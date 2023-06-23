@@ -1,16 +1,89 @@
 Cockpit application to manage Tailscale
 =======================================
 
-**WIP**
+!["Prompt"](https://raw.githubusercontent.com/gbraad/assets/gh-pages/icons/prompt-icon-64.png)
+
+
+A Cockpit application to manage Tailscale 
+
+![Screenshot](./docs/screenshot.png)
+
 
 
 Development
------
-
-### Cloud
+-----------
+This repo story includes deployment scripts for the Cocpit Tailscale development environment.
+The easiest to get started is by using the following cloud development environments:
 
   * Open in [Gitpod workspace](https://gitpod.io/#https://github.com/spotsnel/cockpit-tailscale)
   * Open in [CodeSandbox](https://codesandbox.io/p/github/spotsnel/cockpit-tailscale)
+
+or you can either use a local `devsys`/`almsys`, like published here:
+
+  * https://github.com/gbraad-devenv/fedora
+  * https://github.com/gbraad-devenv/almalinux
+
+
+### Preparation
+
+Install the following packages to develop and build:
+```
+$ sudo dnf install -y make npm
+```
+
+and to make the RPM you need:
+```
+$ sudo rpm-build gettext libappstream-glib
+```
+
+
+### Build
+
+To perform a development build:
+```
+$ npx webpack --mode development
+````
+
+To perform a production build:
+```
+$ make
+```
+
+After the build, copy contents to `/usr/share/cockpit/tailscale`, `/usr/share/local/cockpit/tailscale` or `~/.local/share/cockpit/tailscale`
+
+For convenience, you can also create a symlink to `~/.local/share/cockpit/tailscale` to `$PWD/dist`. However, you will need to logout/login because Cockpit caches the page and assets.
+
+
+### Tailscale systemd image
+
+For example, on an instance of [spotsnel/tailscale-systemd](https://github.com/spotsnel/tailscale-systemd):
+```
+$ tailscale ssh podmandesktop / podman exec -it tailscale-system bash
+# dnf install -y cockpit passwd
+# systemctl enable --now cockpit.socket
+# curl -L https://github.com/spotsnel/cockpit-tailscale/releases/download/v0.0.1/cockpit-tailscale-v0.0.1.tar.gz -o dist.tar.gz
+# tar zxvf dist.tar.gz 
+# mkdir /usr/local/share/cockpit
+# mv dist /usr/local/share/cockpit/tailscale
+# passwd root
+# tailscale up --ssh
+```
+Now you can access the remote cockpit from another host by 'add new host'.
+Note: remote hosts get authenticated over SSH. If you have conflicts, like on WSL, you can serve on `localhost` instead.
+
+`/etc/systemd/system/cockpit.socket.d/listen.conf`
+```
+[Socket]
+ListenStream=
+ListenStream=127.0.0.1:9090
+FreeBind=yes
+```
+
+```
+# tailscale serve tcp:9090 tcp://localhost:9090
+# systemctl daemon-reload
+# systemctl restart cockpit.socket
+```
 
 
 Authors

@@ -6,8 +6,11 @@ USER root
 RUN useradd -l -u 33333 -G wheel -md /home/gitpod -s /usr/bin/zsh -p gitpod gitpod
 
 RUN dnf install -y \
-        docker cockpit \
-        make npm \
+        docker \
+        cockpit \
+        make \
+        npm \
+        rpm-build \
     && dnf clean all \
     && rm -rf /var/cache/yum
 
