@@ -1,7 +1,7 @@
 Name: cockpit-tailscale
 Version: %{VERSION}
 Release: 1%{?dist}
-Summary: Cockpit tailscale
+Summary: Cockpit Tailscale
 License: LGPLv2+
 
 Source0: https://github.com/spotsnel/tailscale-cockpit/releases/download/%{version}/%{name}-%{version}.tar.xz
@@ -21,7 +21,7 @@ Requires: cockpit-bridge
 %{NPM_PROVIDES}
 
 %description
-Cockpit Starter Kit Example Module
+Tailscale management for Cockpit
 
 %prep
 %autosetup -n %{name} -a 1
@@ -48,7 +48,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
 
 %files
 %doc README.md
-%license LICENSE dist/index.js.LEGAL.txt dist/index.css.LEGAL.txt
+%license LICENSE dist/bundle.js.LICENSE.txt
 %{_datadir}/cockpit/*
 %{_datadir}/metainfo/*
 

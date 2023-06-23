@@ -1,7 +1,12 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const { stylePaths } = require('./stylePaths');
+
+const copy_files = [
+  "./src/manifest.json",
+];
 
 module.exports = {
   devtool: "source-map",
@@ -109,6 +114,9 @@ module.exports = {
     modules: ["node_modules", 'pkg/lib'],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: copy_files
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),

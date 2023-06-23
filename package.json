@@ -3,7 +3,8 @@
   "description": "Tailscale application for Cockpit",
   "main": "dist/index.js",
   "repository": "git@github.com:spotsnel/tailscale-cockpit.git",
-  "author": "",
+  "author": "Gerard Braad <me@gbraad.nl>",
+  "version": "v0.0.6",
   "license": "LGPL-2.1",
   "scripts": {
     "build": "webpack --mode production",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.2.5",
     "argparse": "^2.0.1",
     "chrome-remote-interface": "^0.32.1",
+    "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
