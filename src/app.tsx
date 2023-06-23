@@ -35,7 +35,7 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
 
     render() {
 
-        function isNotSharee(peer:TailscalePeer): peer is TailscalePeer {
+        function isNotSharee(peer: TailscalePeer): peer is TailscalePeer {
             return peer.DNSName !== "";     // ShareeNode doesn't work?
         }
 
@@ -61,6 +61,7 @@ export class Application extends React.Component<ApplicationProps, ApplicationSt
                                 </Tr>
                             </Thead>
                             <Tbody>
+                                { this.state.Status.Self.Self = true }
                                 <Peer {...this.state.Status.Self} />
                                 {
                                     Object.values(this.state.Status.Peer)
@@ -107,13 +108,15 @@ class Peer extends React.Component<TailscalePeer> {
                     tags
                 }
                 </Td>
-                <Td>{this.props.Active
-                    ? this.props.CurAddr != ""
-                        ? "Direct"
-                        : "Relay: " + this.props.Relay
-                    : this.props.Online
-                        ? "Idle"
-                        : "-"
+                <Td>{this.props.Self
+                    ? "Self"
+                    : this.props.Active
+                        ? this.props.CurAddr != ""
+                            ? "Direct"
+                            : "Relay: " + this.props.Relay
+                        : this.props.Online
+                            ? "Idle"
+                            : "-"
                 }</Td>
                 <Td>{this.props.ExitNode
                     ? "Current"

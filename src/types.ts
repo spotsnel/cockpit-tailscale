@@ -18,6 +18,7 @@ export enum OS {
 }
 
 export type TailscalePeer = {
+    Self: boolean;
     ID: string;
     PublicKey: string;
     HostName: string;
