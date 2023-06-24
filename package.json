@@ -8,7 +8,11 @@
   "license": "LGPL-2.1",
   "scripts": {
     "build": "webpack --mode production",
-    "watch": ""
+    "rpm": "make rpm",
+    "watch": "",
+    "link": "mkdir -p ~/.local/share/cockpit && ln -s $PWD/dist ~/.localshare/share/cockpit/tailscale",
+    "unlink": "rm ~/.local/share/cockpit/tailscale",
+    "cockpit": "sudo runuser -u cockpit-wsinstance -- /usr/libexec/cockpit-ws --port=9090 --for-tls-proxy"
   },
   "devDependencies": {
     "@types/react": "^18.2.12",

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+test -x /usr/sbin/tailscaled || exit 0
+umask 022
+
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+
+case "$1" in
+  start)
+        echo "Starting Tailscale VPN"
+            tailscaled --tun=userspace-networking \
+                --socks5-server=localhost:3215 \
+                --outbound-http-proxy-listen=localhost:3214 \
+                --state=/var/lib/tailscale/tailscaled.state \
+                --socket=/run/tailscale/tailscaled.sock \
+                --port 41641 \
+                2>/dev/null &
+            tailscale up --authkey=${TAILSCALE_AUTHKEY} \
+                --netfilter-mode=off \
+                --ssh
+        ;;
+  *)
+        echo "Usage: /etc/init.d/tailscaled {start}"
+        exit 1
+esac
+
+exit 0

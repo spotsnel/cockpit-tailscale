@@ -8,6 +8,7 @@ RUN useradd -l -u 33333 -G wheel -md /home/gitpod -s /usr/bin/zsh -p gitpod gitp
 RUN dnf install -y \
         docker \
         cockpit \
+        passwd \
         make \
         npm \
         rpm-build \

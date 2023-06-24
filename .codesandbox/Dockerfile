@@ -5,6 +5,7 @@ USER root
 RUN dnf install -y \
         docker \
         cockpit \
+        passwd \
         make \
         npm \
         rpm-build \
@@ -12,6 +13,8 @@ RUN dnf install -y \
     && rm -rf /var/cache/yum
 
 RUN npm install -g yarn
+
+COPY .codesandbox/tailscaled /etc/init.d/taiscaled
 
 USER gbraad
 
