@@ -91,6 +91,10 @@ And to remove:
 $ npm run unlink
 ```
 
+Note: this only works when the current user also logs in. Otherwise, use the tasks
+`linkusr` and `unlinkusr` which uses `sudo` to create the link in `/usr/local/share/cockpit`.
+
+
 #### Run Cockpit
 
 You can run Cockpit in a container or remote development environment with the following command:

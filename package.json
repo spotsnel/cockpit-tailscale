@@ -11,8 +11,10 @@
     "dev": "webpack --mode development",
     "rpm": "make rpm",
     "watch": "",
-    "link": "mkdir -p ~/.local/share/cockpit && ln -s $PWD/dist ~/.localshare/share/cockpit/tailscale",
+    "link": "mkdir -p ~/.local/share/cockpit && ln -s $PWD/dist ~/.local/share/cockpit/tailscale",
     "unlink": "rm ~/.local/share/cockpit/tailscale",
+    "linkusr": "sudo mkdir -p /usr/local/share/cockpit && sudo ln -s $PWD/dist /usr/local/share/cockpit/tailscale",
+    "unlinkusr": "sudo rm ~/.local/share/cockpit/tailscale",
     "cockpit": "sudo runuser -u cockpit-wsinstance -- /usr/libexec/cockpit-ws --port=9090 --for-tls-proxy"
   },
   "devDependencies": {
