@@ -13,7 +13,7 @@ A Cockpit application to manage Tailscale
 Development
 -----------
 
-This repo story includes deployment scripts for the Cocpit Tailscale development environment.
+This repository includes deployment scripts for the Cocpit Tailscale development environment.
 The easiest to get started is by using the following cloud development environments:
 
   * Open in [Gitpod workspace](https://gitpod.io/#https://github.com/spotsnel/cockpit-tailscale)
