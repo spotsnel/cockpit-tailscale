@@ -8,6 +8,7 @@
   "license": "LGPL-2.1",
   "scripts": {
     "build": "webpack --mode production",
+    "dev": "webpack --mode development",
     "rpm": "make rpm",
     "watch": "",
     "link": "mkdir -p ~/.local/share/cockpit && ln -s $PWD/dist ~/.localshare/share/cockpit/tailscale",

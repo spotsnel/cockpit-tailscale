@@ -12,6 +12,7 @@ A Cockpit application to manage Tailscale
 
 Development
 -----------
+
 This repo story includes deployment scripts for the Cocpit Tailscale development environment.
 The easiest to get started is by using the following cloud development environments:
 
@@ -24,34 +25,77 @@ or you can either use a local `devsys`/`almsys`, like published here:
   * https://github.com/gbraad-devenv/almalinux
 
 
+
 ### Preparation
 
 Install the following packages to develop and build:
+
 ```
 $ sudo dnf install -y make npm
 ```
 
 and to make the RPM you need:
+
 ```
-$ sudo rpm-build gettext libappstream-glib
+$ sudo dnf install -y rpm-build gettext libappstream-glib
 ```
+
+
+#### Cockpit user
+
+If you want to run cockpit, you need a user with a password:
+
+```
+$ sudo dnf install -y passwd
+$ sudo passwd gbraad
+```
+
+After which you can use this user to log in to Cockpit.
 
 
 ### Build
 
 To perform a development build:
 ```
-$ npx webpack --mode development
+$ npm run dev
 ````
 
 To perform a production build:
 ```
-$ make
+$ npm run build
 ```
 
-After the build, copy contents to `/usr/share/cockpit/tailscale`, `/usr/share/local/cockpit/tailscale` or `~/.local/share/cockpit/tailscale`
+For the RPM package:
+```
+$ npm run rpm
+```
+
+
+### Cockpit
+
+After the build, copy contents to `/usr/share/cockpit/tailscale`, `/usr/share/local/cockpit/tailscale` or `~/.local/share/cockpit/tailscale`.
+
+#### Link development
 
 For convenience, you can also create a symlink to `~/.local/share/cockpit/tailscale` to `$PWD/dist`. However, you will need to logout/login because Cockpit caches the page and assets.
+
+To create a link:
+```
+$ npm run link
+```
+
+And to remove:
+```
+$ npm run unlink
+```
+
+#### Run Cockpit
+You can run Cockpit in a container or remote development environment with the following command:
+```
+$ npm run cockpit
+```
+
+You will need to use an account with a password to log in.
 
 
 ### Tailscale systemd image
