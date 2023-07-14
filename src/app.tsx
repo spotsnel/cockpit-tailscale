@@ -105,7 +105,7 @@ class Peer extends React.Component<TailscalePeer> {
 
         var tags = "-"
         if (this.props.Tags) {
-            const mapped_items = this.props.Tags?.map(t => { return t })
+            const mapped_items = this.props.Tags?.map(t => { return t.split(":")[1] })
             tags = mapped_items.join(', ')
         }
 
@@ -140,7 +140,10 @@ class Peer extends React.Component<TailscalePeer> {
                         : "-"
                 }</Td>
                 <Td>{this.props.OS}</Td>
-                <Td>{this.props.TxBytes} / {this.props.RxBytes}</Td>
+                <Td>{this.props.Self
+                        ? "-"
+                        : "" + this.props.TxBytes + " / " + this.props.RxBytes
+                }</Td>
             </Tr>);
     }
 }
